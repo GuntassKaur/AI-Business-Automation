@@ -1,153 +1,75 @@
-# AI-Business-Automation - OS
+# AI Business Automation OS
 
+Production-ready fullstack monorepo for an AI-powered business automation platform.
 
-A futuristic, fullstack AI-powered web application designed to automate real-world business workflows using intelligent systems, modern UI/UX, and scalable architecture.
+## Stack
 
----
+- Frontend: Next.js (App Router), Tailwind CSS, Framer Motion, shadcn-style custom UI
+- Backend: FastAPI, JWT Auth, REST APIs
+- Database: PostgreSQL
+- AI Layer: modular AI service (can run mock logic or OpenAI)
 
-🧠 Overview
+## Project Structure
 
-AI Business Automation OS is a next-generation platform that integrates multiple business operations into a unified system. It leverages AI to automate workflows such as order management, invoice processing, and conversational assistance.
+- `frontend/` - Next.js futuristic SaaS web app
+- `backend/` - FastAPI clean architecture backend
+- `docker-compose.yml` - PostgreSQL + backend + frontend
 
-The system is designed with a product-first mindset, focusing on usability, scalability, and intelligent decision-making.
+## Prerequisites
 
----
+- Node.js 20+ (includes npm)
+- Python 3.11+
+- PostgreSQL 16+ (or Docker Desktop)
 
-✨ Key Features
+## Quick Start
 
-🤖 AI Chat Assistant
+### Windows One-Command Start
 
-- Real-time conversational interface
-- Smart suggestions and workflow insights
-- Context-aware responses
+```powershell
+.\start.ps1
+```
 
-📦 Order Management System
+This script validates prerequisites, creates env files, starts PostgreSQL (if Docker exists), then launches backend and frontend in separate terminals.
 
-- Create, update, and manage orders
-- Dynamic filtering and status tracking
-- Backend-integrated workflow handling
+### 1) Backend
 
-🧾 Invoice AI Module
-
-- Upload invoices
-- Extract structured data (AI-powered / simulated)
-- Display parsed results cleanly
-
-📊 Smart Dashboard
-
-- Real-time analytics (orders, activity, trends)
-- Visual insights with charts
-- AI-driven recommendations
-
-⚙️ Workflow Automation
-
-- Automates business processes:
-  - Order → Processing → Storage → Insights
-- Modular and extensible system design
-
----
-
-🏗️ Tech Stack
-
-Frontend:
-
-- Next.js (App Router)
-- Tailwind CSS
-- Framer Motion (animations)
-- ShadCN UI (customized)
-
-Backend:
-
-- FastAPI (Python)
-- REST APIs
-- JWT Authentication
-
-Database:
-
-- PostgreSQL
-
-AI Integration:
-
-- AI logic / OpenAI API (optional)
-- Modular agent-based architecture
-
----
-
-🎨 UI/UX Highlights
-
-- Futuristic 2050-style interface
-- Glassmorphism + Neon gradients
-- Smooth animations & micro-interactions
-- Floating components and dynamic layout
-- Fully responsive design
-
----
-
-📂 Project Structure
-
-/backend
-├── routes/
-├── models/
-├── schemas/
-├── services/
-
-/frontend
-├── app/
-├── components/
-├── lib/
-├── styles/
-
----
-
-⚙️ Setup Instructions
-
-1. Clone the repository
-
-git clone <your-repo-link>
-cd ai-business-os
-
-2. Backend Setup
-
+```bash
 cd backend
+python -m venv .venv
+.venv\Scripts\activate
 pip install -r requirements.txt
-uvicorn main:app --reload
+copy .env.example .env
+uvicorn app.main:app --reload --port 8000
+```
 
-3. Frontend Setup
+### 2) Frontend
 
+```bash
 cd frontend
 npm install
+copy .env.example .env.local
 npm run dev
+```
 
-4. Database Setup
+### 3) Database
 
-- Install PostgreSQL
-- Create database
-- Update connection string in backend config
+Run PostgreSQL locally and update env vars, or use Docker:
 
----
+```bash
+docker compose up --build
+```
 
-🚀 Future Enhancements
+Frontend: `http://localhost:3000`  
+Backend docs: `http://localhost:8001/docs`
 
-- Real-time AI agents using LangGraph
-- Multi-user collaboration
-- Advanced analytics dashboard
-- Voice-enabled AI assistant
-- Cloud deployment (AWS/GCP)
+## Auth Flow
 
----
+- Open `http://localhost:3000/signup` to create your first account.
+- Login from `http://localhost:3000/login`.
+- All business modules are protected and require a valid JWT.
 
-💡 Inspiration
+## Troubleshooting
 
-Built with the vision of creating an intelligent system similar to modern AI-driven business platforms used by startups and enterprises.
-
----
-
-👩‍💻 Author
-
-Guntass Kaur
-B.Tech CSE | Aspiring Software Engineer
-Specializing in Fullstack Development & AI Systems
-
----
-
-⭐ If you like this project, consider giving it a star!
+- If `node` or `npm` is not recognized, install Node.js and reopen terminal.
+- If `python` is not recognized, install Python and enable `Add python.exe to PATH`.
+- If signup fails with email validation errors, re-run `pip install -r requirements.txt`.
